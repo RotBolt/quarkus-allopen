@@ -6,8 +6,6 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <maven.version>3.0.5</maven.version>
-        <kotlin.allopen.src>https://github.com/JetBrains/kotlin/tree/master/plugins/allopen/allopen-cli/src</kotlin.allopen.src>
-        <kotlin.allopen.resources>https://github.com/JetBrains/kotlin/tree/master/plugins/allopen/allopen-cli/resources</kotlin.allopen.resources>
         <quarkus.allopen.maven.plugin.src>${basedir}/src/main/kotlin</quarkus.allopen.maven.plugin.src>
     </properties>
 
@@ -33,10 +31,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource><directory>${kotlin.allopen.resources}</directory></resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -47,7 +41,6 @@
                         <goals><goal>add-source</goal></goals>
                         <configuration>
                             <sources>
-                                <source>${kotlin.allopen.src}</source>
                                 <source>${quarkus.allopen.maven.plugin.src}</source>
                             </sources>
                         </configuration>
