@@ -30,5 +30,44 @@
       
 - If using single build.gradle file in your project. 
   Then please use the legacy method of applying gradle plugin only
-    
+  
+
+#### Usage (maven)
+
+-   package and install the allopen-maven
+-   use it in the project like this (in plugin section of pom.xml)
+    ```
+           <plugin>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-plugin</artifactId>
+            <version>${kotlin.version}</version>
+            <executions>
+              <execution>
+                <id>compile</id>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>test-compile</id>
+                <goals>
+                  <goal>test-compile</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>io.quarkus.allopen</groupId>
+                <artifactId>quarkus-maven-allopen</artifactId>
+                <version>1.0</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <javaParameters>true</javaParameters>
+              <compilerPlugins>
+                <plugin>quarkus-allopen</plugin>
+              </compilerPlugins>
+            </configuration>
+          </plugin>
+    ```
 
