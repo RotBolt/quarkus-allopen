@@ -13,6 +13,8 @@ const val groupId = "io.quarkus.allopen"
 const val artifactId = "quarkus-allopen"
 const val version = "1.0"
 
+const val  kotlinCompilerPluginId = "org.jetbrains.kotlin.allopen"
+
 @AutoService(KotlinGradleSubplugin::class)
 class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompile>{
 
@@ -25,10 +27,10 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
         kotlinCompilation: KotlinCompilation<KotlinCommonOptions>?
     ): List<SubpluginOption> {
         val extensions = project.extensions.findByType(QuarkusAllOpenExtension::class.java) ?: QuarkusAllOpenExtension()
-        return extensions.annotations.map { SubpluginOption(key = "quark-annotation",value = it ) }
+        return extensions.annotations.map { SubpluginOption(key = "annotation",value = it ) }
     }
 
-    override fun getCompilerPluginId(): String  ="$groupId.$artifactId"
+    override fun getCompilerPluginId(): String  = kotlinCompilerPluginId
 
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId,
