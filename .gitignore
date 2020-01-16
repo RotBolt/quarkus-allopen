@@ -2,3 +2,4 @@
 .idea
 build
 allopen/build
+allopen-maven/target
