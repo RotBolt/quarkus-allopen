@@ -1,6 +1,5 @@
 package io.quarkus.allopen
 
-import com.google.auto.service.AutoService
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.plugin.KotlinGradleSubplugin
 import org.gradle.api.tasks.compile.AbstractCompile
@@ -15,7 +14,7 @@ const val version = "1.0"
 
 const val  kotlinCompilerPluginId = "org.jetbrains.kotlin.allopen"
 
-@AutoService(KotlinGradleSubplugin::class)
+
 class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompile>{
 
     override fun apply(
@@ -27,7 +26,14 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
         kotlinCompilation: KotlinCompilation<KotlinCommonOptions>?
     ): List<SubpluginOption> {
         val extensions = project.extensions.findByType(QuarkusAllOpenExtension::class.java) ?: QuarkusAllOpenExtension()
-        return extensions.annotations.map { SubpluginOption(key = "annotation",value = it ) }
+        val options = mutableListOf<SubpluginOption>()
+        for (anno in extensions.defaultAnnotations){
+            options += SubpluginOption("annotation",anno)
+        }
+        for (anno in extensions.annotations){
+            options += SubpluginOption("annotation",anno)
+        }
+        return options
     }
 
     override fun getCompilerPluginId(): String  = kotlinCompilerPluginId
@@ -39,7 +45,7 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
     )
 
     override fun isApplicable(project: Project, task: AbstractCompile): Boolean {
-      return  project.plugins.hasPlugin(QuarkusAllOpenPlugin::class.java)
+      return  true
     }
 
 

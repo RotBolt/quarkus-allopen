@@ -1,0 +1,20 @@
+buildscript {
+    ext.ktVersion = "1.3.61"
+    repositories { jcenter() }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ktVersion"
+    }
+}
+
+subprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    // Install into local Maven repo with `./gradlew :allopen:install`
+    apply plugin: "maven"
+
+    group 'io.quarkus.allopen'
+    version '1.0'
+}
