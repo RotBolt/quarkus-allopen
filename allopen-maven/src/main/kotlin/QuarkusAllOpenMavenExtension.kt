@@ -6,11 +6,12 @@ import org.codehaus.plexus.component.annotations.Component
 import org.jetbrains.kotlin.maven.KotlinMavenPluginExtension
 import org.jetbrains.kotlin.maven.PluginOption
 
-const val  kotlinCompilerPluginId = "org.jetbrains.kotlin.allopen"
+const val groupId = "io.quarkus.allopen"
+const val artifactId = "quarkus-allopen"
 
 @Component(role = KotlinMavenPluginExtension::class, hint = "quarkus-allopen")
 class QuarkusAllOpenMavenExtension : KotlinMavenPluginExtension {
-    override fun getCompilerPluginId(): String = kotlinCompilerPluginId
+    override fun getCompilerPluginId(): String = "$groupId.$artifactId"
 
     override fun isApplicable(project: MavenProject, execution: MojoExecution): Boolean = true
 
@@ -18,7 +19,7 @@ class QuarkusAllOpenMavenExtension : KotlinMavenPluginExtension {
         return QuarkusAllOpenExtension().annotations.map {
             PluginOption(
                 "quarkus-allopen",
-                kotlinCompilerPluginId,
+                "$groupId.$artifactId",
                 "annotation",
                 it
             )

@@ -6,6 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <maven.version>3.0.5</maven.version>
+        <quarkus.allopen.resources>${basedir}/src/main/resources</quarkus.allopen.resources>
         <quarkus.allopen.maven.plugin.src>${basedir}/src/main/kotlin</quarkus.allopen.maven.plugin.src>
     </properties>
 
@@ -31,6 +32,11 @@
     </dependencies>
 
     <build>
+
+        <resources>
+            <resource><directory>${quarkus.allopen.resources}</directory></resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
