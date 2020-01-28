@@ -1,5 +1,3 @@
-package io.quarkus.allopen.cli
-
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.extensions.AnnotationBasedExtension

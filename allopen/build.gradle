@@ -8,7 +8,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin-model"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin-api"
-    implementation "org.jetbrains.kotlin:kotlin-compiler-embeddable"
+
+    compileOnly(project(':allopen-cli'))
+    embedded(project(':allopen-cli')) { transitive = false }
 }
 
 gradlePlugin {
