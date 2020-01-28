@@ -12,10 +12,7 @@ const val groupId = "io.quarkus.allopen"
 const val artifactId = "quarkus-allopen"
 const val version = "1.0"
 
-const val  kotlinCompilerPluginId = "org.jetbrains.kotlin.allopen"
-
-
-class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompile>{
+class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompile> {
 
     override fun apply(
         project: Project,
@@ -27,16 +24,16 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
     ): List<SubpluginOption> {
         val extensions = project.extensions.findByType(QuarkusAllOpenExtension::class.java) ?: QuarkusAllOpenExtension()
         val options = mutableListOf<SubpluginOption>()
-        for (anno in extensions.defaultAnnotations){
-            options += SubpluginOption("annotation",anno)
+        for (anno in extensions.defaultAnnotations) {
+            options += SubpluginOption("annotation", anno)
         }
-        for (anno in extensions.annotations){
-            options += SubpluginOption("annotation",anno)
+        for (anno in extensions.annotations) {
+            options += SubpluginOption("annotation", anno)
         }
         return options
     }
 
-    override fun getCompilerPluginId(): String  = kotlinCompilerPluginId
+    override fun getCompilerPluginId(): String = "$groupId.$artifactId"
 
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId,
@@ -45,7 +42,7 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
     )
 
     override fun isApplicable(project: Project, task: AbstractCompile): Boolean {
-      return  true
+        return project.plugins.hasPlugin(QuarkusAllOpenPlugin::class.java)
     }
 
 

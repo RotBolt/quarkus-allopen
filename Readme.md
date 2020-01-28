@@ -4,8 +4,10 @@
 
 - Building project
     - build the project
+    - install into local repo `./gradlew :allopen:install`
     - publish to local maven repository by `./gradlew publishToMavenLocal`
 
+###### MultiModule Project
 - Adding to your own project
     - add `buildScript {}` to your root level build.gradle
     ```$xslt
@@ -23,13 +25,30 @@
     - use it as 
         ```$xslt
             quarkusAllOpen {
-                enabled = true
                 annotations = [] // add custom annotations
             }
         ```
-      
+###### Single Module (Single build.gradle file)     
 - If using single build.gradle file in your project. 
-  Then please use the legacy method of applying gradle plugin only
+  - In `settings.gradle`
+  ```$xslt
+    pluginManagement {
+        repositories {
+            mavenLocal()
+        }
+        plugins {
+            id 'quarkus.allopen' version "1.0"
+        }
+    }
+  ``` 
+  - In `build.gradle` file
+  
+  ```$xslt
+    plugins {
+        id 'quarkus.allopen'
+    }
+  ```
+
   
 
 #### Usage (maven)

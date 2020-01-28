@@ -8,12 +8,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin-model"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin-api"
+    implementation "org.jetbrains.kotlin:kotlin-compiler-embeddable"
 }
 
 gradlePlugin {
     plugins {
         allOpenPlugin {
-            id = "quarkus.allOpen" // users will do `apply plugin: "quarkus-allopen"`
+            id = "quarkus.allopen" // users will do `apply plugin: "quarkus.allopen"`
             implementationClass = "io.quarkus.allopen.QuarkusAllOpenPlugin" // entry-point class
         }
     }
