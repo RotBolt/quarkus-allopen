@@ -1,9 +1,11 @@
 package io.quarkus.allopen.cli
 
+import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.extensions.AnnotationBasedExtension
 import org.jetbrains.kotlin.extensions.DeclarationAttributeAltererExtension
+import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.lexer.KtTokens.FINAL_KEYWORD
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtModifierListOwner
@@ -19,16 +21,19 @@ class QuarkusAttributeAltererExtension ( private val allOpenAnnotationFqNames: L
         bindingContext: BindingContext,
         isImplicitModality: Boolean
     ): Modality? {
-        return if (currentModality != Modality.FINAL ||
-            (modifierListOwner !is KtClass && modifierListOwner !is KtNamedFunction) ||
-            containingDeclaration.toString() == "Companion"
-        ) {
-            null
-        } else if (!isImplicitModality && modifierListOwner.hasModifier(FINAL_KEYWORD)) {
-            Modality.FINAL // Explicit final
-        } else {
-            Modality.OPEN
+        if (currentModality != Modality.FINAL) {
+            return null
         }
+
+        val descriptor = declaration as? ClassDescriptor ?: containingDeclaration ?: return null
+        if (descriptor.hasSpecialAnnotation(modifierListOwner)) {
+            return if (!isImplicitModality && modifierListOwner.hasModifier(KtTokens.FINAL_KEYWORD))
+                Modality.FINAL // Explicit final
+            else
+                Modality.OPEN
+        }
+
+        return null
     }
 
     override fun getAnnotationFqNames(modifierListOwner: KtModifierListOwner?): List<String>  = allOpenAnnotationFqNames
