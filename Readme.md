@@ -77,8 +77,8 @@
             <dependencies>
                <dependency>
                   <groupId>io.quarkus.allopen</groupId>
-                    <artifactId>quarkus-maven-allopen</artifactId>
-                    <version>1.0</version>
+                  <artifactId>quarkus-maven-allopen</artifactId>
+                  <version>1.0</version>
                </dependency>
             </dependencies>
             <configuration>
@@ -86,6 +86,6 @@
                    <plugin>quarkus-allopen</plugin>
                  </compilerPlugins>
             </configuration>
-          </plugin>
+           </plugin>
     ```
 
