@@ -75,17 +75,16 @@
               </execution>
             </executions>
             <dependencies>
-              <dependency>
-                <groupId>io.quarkus.allopen</groupId>
-                <artifactId>quarkus-maven-allopen</artifactId>
-                <version>1.0</version>
-              </dependency>
+               <dependency>
+                  <groupId>io.quarkus.allopen</groupId>
+                    <artifactId>quarkus-maven-allopen</artifactId>
+                    <version>1.0</version>
+               </dependency>
             </dependencies>
             <configuration>
-              <javaParameters>true</javaParameters>
-              <compilerPlugins>
-                <plugin>quarkus-allopen</plugin>
-              </compilerPlugins>
+                 <compilerPlugins>
+                   <plugin>quarkus-allopen</plugin>
+                 </compilerPlugins>
             </configuration>
           </plugin>
     ```
