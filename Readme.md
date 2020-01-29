@@ -80,6 +80,11 @@
                   <artifactId>quarkus-maven-allopen</artifactId>
                   <version>1.0</version>
                </dependency>
+               <dependency>
+                   <groupId>org.jetbrains.kotlin</groupId>
+                   <artifactId>kotlin-maven-allopen</artifactId>
+                   <version>${kotlin.version}</version>
+               </dependency>
             </dependencies>
             <configuration>
                  <compilerPlugins>
