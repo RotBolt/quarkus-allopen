@@ -19,7 +19,7 @@ class QuarkusAllOpenMavenExtension : KotlinMavenPluginExtension {
         return QuarkusAllOpenExtension().annotations.map {
             PluginOption(
                 "quarkus-allopen",
-                "$groupId.$artifactId",
+                "org.jetbrains.kotlin.allopen",
                 "annotation",
                 it
             )
