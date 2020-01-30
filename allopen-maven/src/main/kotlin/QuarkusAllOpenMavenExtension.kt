@@ -15,14 +15,7 @@ class QuarkusAllOpenMavenExtension : KotlinMavenPluginExtension {
 
     override fun isApplicable(project: MavenProject, execution: MojoExecution): Boolean = true
 
-    override fun getPluginOptions(project: MavenProject, execution: MojoExecution): MutableList<PluginOption> {
-        return QuarkusAllOpenExtension().annotations.map {
-            PluginOption(
-                "quarkus-allopen",
-                "$groupId.$artifactId",
-                "annotation",
-                it
-            )
-        }.toMutableList()
+    override fun getPluginOptions(project: MavenProject, execution: MojoExecution): List<PluginOption> {
+        return emptyList()
     }
 }

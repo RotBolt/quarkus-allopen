@@ -24,9 +24,6 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
     ): List<SubpluginOption> {
         val extensions = project.extensions.findByType(QuarkusAllOpenExtension::class.java) ?: QuarkusAllOpenExtension()
         val options = mutableListOf<SubpluginOption>()
-        for (anno in extensions.defaultAnnotations) {
-            options += SubpluginOption("annotation", anno)
-        }
         for (anno in extensions.annotations) {
             options += SubpluginOption("annotation", anno)
         }
@@ -44,6 +41,4 @@ class QuarkusAllOpenKotlinGradleSubplugin : KotlinGradleSubplugin<AbstractCompil
     override fun isApplicable(project: Project, task: AbstractCompile): Boolean {
         return project.plugins.hasPlugin(QuarkusAllOpenPlugin::class.java)
     }
-
-
 }
